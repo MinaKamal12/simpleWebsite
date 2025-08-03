@@ -2,7 +2,11 @@
 
 # Exit on error
 set -e
-
+# check if docker is installed before enything
+if ! command -v docker &> /dev/null; then
+    echo "🚨 Docker is not installed or not accessible by Jenkins"
+    exit 1
+fi
 # Step 1: Build Docker image
 echo "🔨 Building Docker image..."
 docker build -t simple-website-docker .
